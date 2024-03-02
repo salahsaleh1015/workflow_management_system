@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'features/login/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) => const MaterialApp(
+        title: 'workflow management system',
+        debugShowCheckedModeBanner: false,
+        home: LoginView(),
+      ),
+    );
   }
 }

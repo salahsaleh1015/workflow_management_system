@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:workfow_management_system/features/login/login_app_bar.dart';
-import 'package:workfow_management_system/features/login/login_view_body.dart';
+import 'package:workfow_management_system/features/login/view/login_app_bar.dart';
+import 'package:workfow_management_system/features/login/view/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

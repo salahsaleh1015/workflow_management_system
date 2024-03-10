@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:workfow_management_system/features/dean/view/dean_home_screen.dart';
 
-import 'features/login/login_view.dart';
+import 'features/login/view/login_view.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => const MaterialApp(
         title: 'workflow management system',
         debugShowCheckedModeBanner: false,
-        home: LoginView(),
+        home: DeanHomeScreen(),
       ),
     );
   }

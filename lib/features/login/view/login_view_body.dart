@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workfow_management_system/features/login/component/login_button.dart';
-import 'package:workfow_management_system/features/login/component/login_form_field.dart';
+import 'package:workfow_management_system/features/dean/view/dean_home_screen.dart';
+
+import 'package:workfow_management_system/features/login/view/component/login_button.dart';
+import 'package:workfow_management_system/features/login/view/component/login_form_field.dart';
 import 'package:workfow_management_system/resources/assets_maneger.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
@@ -56,7 +58,9 @@ class LoginViewBody extends StatelessWidget {
                     height: 50.h,
                   ),
                   LoginButton(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const DeanHomeScreen()));
+                    },
                   ),
                 ],
               ),

@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../resources/assets_maneger.dart';
-import '../../resources/color_manager.dart';
+import '../../../resources/assets_maneger.dart';
+import '../../../resources/color_manager.dart';
 
 PreferredSize loginAppBar() {
   return PreferredSize(

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1027537164454",
+    "project_id": "work-flow-management-system",
+    "storage_bucket": "work-flow-management-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027537164454:android:982b921a2001d432ca7c67",
+        "android_client_info": {
+          "package_name": "com.example.workfow_management_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL8YZkRVc_evzX4OsF8CFzCPM8rvZpSok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

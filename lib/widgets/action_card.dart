@@ -65,7 +65,7 @@ class ActionCard extends StatelessWidget {
                             color: ColorManager.primary, width: 0.2.w)),
                     child: Center(
                       child: Text(textOfButton,
-                          style: TextStyle(color: ColorManager.green)),
+                          style: TextStyle(color: ColorManager.green , fontSize: 5.sp)),
                     ),
                   ),
                   onPressed: () {}),

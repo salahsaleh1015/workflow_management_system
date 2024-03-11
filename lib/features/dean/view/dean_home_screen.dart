@@ -15,8 +15,9 @@ class DeanHomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: appBarWidget(symbol: "D", title: "Ahmed Salama"),
-        body: const TabBarView(children: [
+        appBar: appBarWidget(symbol: "D", title: "Ahmed Salama" ,subTitle: "Dean"),
+        body: const TabBarView(
+            children: [
           DeanDashboard(),
           DeanTasks(),
           DeanVacations(),

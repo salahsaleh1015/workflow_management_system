@@ -4,7 +4,7 @@ import 'package:workfow_management_system/resources/color_manager.dart';
 
 import '../resources/assets_maneger.dart';
 
-PreferredSize appBarWidget({required String title , required String symbol }) => PreferredSize(
+PreferredSize appBarWidget({required String title , required String symbol , required String subTitle}) => PreferredSize(
       preferredSize: Size.fromHeight(55.h),
       child: AppBar(
         backgroundColor: ColorManager.primary,
@@ -87,7 +87,7 @@ PreferredSize appBarWidget({required String title , required String symbol }) =>
                     color: ColorManager.white,
                     fontSize: 5.sp,
                   )),
-              Text("Dean",
+              Text(subTitle,
                   style: TextStyle(
                     color: ColorManager.green,
                     fontSize: 3.sp,

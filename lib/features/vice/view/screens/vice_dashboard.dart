@@ -48,9 +48,9 @@ class ViceDashboard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              InfoCard(
+              const InfoCard(
                 name: "Maher",
-                onTap: () {},
+
               ),
               SizedBox(
                 width: 10.w,

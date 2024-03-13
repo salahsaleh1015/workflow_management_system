@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:workfow_management_system/features/dean/view/screens/subscreens/delete_task.dart';
 import 'package:workfow_management_system/features/dean/view/screens/subscreens/edit_tasks_screen.dart';
 import 'package:workfow_management_system/features/dean/view/screens/subscreens/edit_vacations_screen.dart';
 import 'package:workfow_management_system/resources/style_manager.dart';
@@ -139,7 +140,7 @@ Widget dashControlBar({
           children: [
             InfoCard(
               name: "Ahmed",
-              onTap: () {},
+
             ),
             SizedBox(
               width: 10.w,
@@ -226,7 +227,7 @@ Widget dashControlBar({
               cardColor: ColorManager.red,
               title: "Task",
               mainTitle: "Add New Task",
-              textOfButton: "Add Now",
+              textOfButton: "Add",
             ),
             ActionCard(
               onTap: (){
@@ -246,14 +247,17 @@ Widget dashControlBar({
               cardColor: ColorManager.red,
               title: "Task",
               mainTitle: "Edit Task",
-              textOfButton: "Edit Now",
+              textOfButton: "Edit",
             ),
             ActionCard(
+              onTap:  (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const DeleteTasksScreen()));
+              },
               width: 50.w,
               cardColor: ColorManager.yellow,
               title: "Task",
-              mainTitle: "Add New Task",
-              textOfButton: "Add Now",
+              mainTitle: "delete Task",
+              textOfButton: "delete",
             ),
           ],
         ),

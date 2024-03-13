@@ -7,10 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
 class InfoCard extends StatelessWidget {
-    const InfoCard({super.key, required this.name, this.onTap});
+    const InfoCard({super.key, required this.name,});
     final String name;
 
-    final Function()? onTap;
 
     @override
     Widget build(BuildContext context) {
@@ -50,25 +49,7 @@ class InfoCard extends StatelessWidget {
                             color: ColorManager.green)),
                   ],
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                InkWell(
-                  onTap: onTap,
-                  child: Container(
-                    width: 40.w,
-                    height: 20.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorManager.grey, width: 0.3.w),
-                        borderRadius: BorderRadius.circular(30.r)),
-                    child: Center(
-                      child: Text("Edit User Information",
-                          style: TextStyle(
-                              color: ColorManager.green, fontSize: 3.sp)),
-                    ),
-                  ),
-                ),
+
               ],
             ),
           ),

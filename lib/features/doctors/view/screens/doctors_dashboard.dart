@@ -55,7 +55,7 @@ class DoctorsDashboard extends StatelessWidget {
         children: [
           InfoCard(
             name: "Ahmed",
-            onTap: () {},
+
           ),
           SizedBox(
             width: 10.w,

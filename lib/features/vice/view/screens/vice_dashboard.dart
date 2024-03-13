@@ -88,7 +88,7 @@ class ViceDashboard extends StatelessWidget {
               TasksTable(
                 width: 150.w,
                 height: 300.h,
-                showButton: false,
+
               ),
               VacationsTable(
                 width: 150.w,

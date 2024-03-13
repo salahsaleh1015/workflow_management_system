@@ -9,11 +9,11 @@ class TasksTable extends StatelessWidget {
 
       required this.height,
       required this.width,
-      required this.showButton,
+
       this.isMore = false,  this.icon});
   final double height;
   final double width;
-  final bool showButton;
+
   final bool isMore;
   final IconData? icon;
   @override
@@ -46,25 +46,7 @@ class TasksTable extends StatelessWidget {
                   style: TextStyle(fontSize: 5.sp, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
-                (showButton == true)
-                    ? InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 25.w,
-                          height: 25.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(
-                                color: ColorManager.green,
-                              )),
-                          child: Center(
-                            child: Text("add Task",
-                                style: TextStyle(
-                                    color: ColorManager.green, fontSize: 4.sp)),
-                          ),
-                        ),
-                      )
-                    : SizedBox(width: 10.w),
+                SizedBox(width: 10.w),
               ],
             ),
           ),

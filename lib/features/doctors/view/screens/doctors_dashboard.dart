@@ -31,7 +31,7 @@ class DoctorsDashboard extends StatelessWidget {
               TasksTable(
                 width: 150.w,
                 height: 300.h,
-                showButton: false,
+
               ),
               VacationsTable(
                 width: 150.w,
@@ -61,17 +61,10 @@ class DoctorsDashboard extends StatelessWidget {
             width: 10.w,
           ),
           ActionCard(
-            width: 100.w,
+            width: 200.w,
             cardColor: ColorManager.yellow,
-            title: "Task",
-            mainTitle: "Add New Task",
-            textOfButton: "Add",
-          ),
-          ActionCard(
-            width: 100.w,
-            cardColor: ColorManager.blue,
-            title: "Task",
-            mainTitle: "Add New response",
+            title: "vacation",
+            mainTitle: "Add vacation",
             textOfButton: "Add",
           ),
 

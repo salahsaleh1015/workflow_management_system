@@ -16,7 +16,7 @@ class ViceHomeScreen extends StatelessWidget {
        length: 3,
        child:  Scaffold(
          appBar: appBarWidget(symbol: "V", title: "Vice Maher" , subTitle: "Vice"),
-         body: const TabBarView(
+         body:  TabBarView(
            children: [
              ViceDashboard(),
              ViceTasks(),

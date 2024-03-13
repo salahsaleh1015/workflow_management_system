@@ -16,6 +16,7 @@ class EditTasksScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height*0.8,
             showButton: false,
             isMore: true,
+            icon: Icons.more_horiz,
           ),
         ),
       );

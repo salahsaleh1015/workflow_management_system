@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 import 'package:workfow_management_system/widgets/action_card.dart';
+import 'package:workfow_management_system/widgets/control_bar.dart';
 import 'package:workfow_management_system/widgets/info_card.dart';
 import 'package:workfow_management_system/widgets/tasks_table.dart';
 import 'package:workfow_management_system/widgets/vacations_table.dart';
 
 class ViceDashboard extends StatelessWidget {
-  const ViceDashboard({super.key});
-
+   ViceDashboard({super.key});
+  final _senderNameController = TextEditingController();
+  final _taskNameController = TextEditingController();
+  final _deadlineController = TextEditingController();
+  final  _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +22,63 @@ class ViceDashboard extends StatelessWidget {
           SizedBox(
             height: 15.h,
           ),
-          viceDashBoardBar(),
+          ControlBar(
+            userName: "Maher",
+              onChanged: (value){
+                _taskNameController.text = value;
+
+              },
+              deadlineValidator: (value) {
+                if (value!.isEmpty) {
+                  return 'input must not be empty';
+                }
+                return null;
+              },
+              senderValidator: (value) {
+                if (value!.isEmpty) {
+                  return 'input must not be empty';
+                }
+                return null;
+              },
+              taskValidator: (value) {
+                if ( value!.isEmpty) {
+                  return 'input must not be empty';
+                }
+
+              },
+              buttonOnTap: () {
+                _formKey.currentState!.save();
+                if (_formKey.currentState!.validate()) {
+
+                }
+              },
+              deadlineController: _deadlineController,
+              deadlineHint: "deadline",
+              deadlineOnSaved: (String? value) {
+                _deadlineController.text = value!;
+              },
+              onTap: () {
+                showDatePicker(
+                  context: context,
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.parse('2025-12-30'),
+                  initialDate: DateTime.now(),
+                ).then((value) {
+                  _deadlineController.text =
+                      DateFormat.yMMMEd().format(value!).toString();
+                });
+              },
+              senderOnSaved: (String? value) {
+                _senderNameController.text = value!;
+              },
+              senderController: _senderNameController,
+              senderHint: "sender name",
+              taskOnSaved: (String? value) {
+                _taskNameController.text = value!;
+              },
+
+              taskController: _taskNameController,
+              taskHint: "task name"),
           SizedBox(
             height: 10.h,
           ),
@@ -38,60 +99,5 @@ class ViceDashboard extends StatelessWidget {
         ]));
   }
 
-  Widget viceDashBoardBar() => Container(
-        height: 170.h,
-        width: double.infinity,
-        color: ColorManager.lightGrey,
-        child: Padding(
-          padding:
-              EdgeInsets.only(bottom: 3.h, right: 10.w, left: 10.w, top: 15.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const InfoCard(
-                name: "Maher",
 
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              ActionCard(
-                width: 40.w,
-                cardColor: ColorManager.red,
-                title: "Task",
-                mainTitle: "Add New Task",
-                textOfButton: "Add Now",
-              ),
-              ActionCard(
-                width: 40.w,
-                cardColor: ColorManager.blue,
-                title: "Vacation",
-                mainTitle: "Accept or refuse",
-                textOfButton: "Get It",
-              ),
-              ActionCard(
-                width: 40.w,
-                cardColor: ColorManager.red,
-                title: "Task",
-                mainTitle: "Edit Task",
-                textOfButton: "Edit Now",
-              ),
-              ActionCard(
-                width: 40.w,
-                cardColor: ColorManager.yellow,
-                title: "Task",
-                mainTitle: "Delete Task",
-                textOfButton: "Delete",
-              ),
-              ActionCard(
-                width: 40.w,
-                cardColor: ColorManager.blue,
-                title: "Response",
-                mainTitle: "Add New Response",
-                textOfButton: "Add Now",
-              ),
-            ],
-          ),
-        ),
-      );
 }

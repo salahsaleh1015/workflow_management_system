@@ -6,14 +6,16 @@ import 'package:workfow_management_system/resources/color_manager.dart';
 class TasksTable extends StatelessWidget {
   const TasksTable(
       {super.key,
+
       required this.height,
       required this.width,
       required this.showButton,
-      this.isMore = false});
+      this.isMore = false,  this.icon});
   final double height;
   final double width;
   final bool showButton;
   final bool isMore;
+  final IconData? icon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,7 +88,7 @@ class TasksTable extends StatelessWidget {
                   Text("time remaining", style: commonTextStyle),
                   (isMore == true)
                       ? Icon(
-                          Icons.more_horiz,
+                          icon,
                           size: 20.r,
                           color: ColorManager.primary,
                         )
@@ -123,7 +125,7 @@ class TasksTable extends StatelessWidget {
                               ? IconButton(
                                   onPressed: () {},
                                   icon: Icon(
-                                    Icons.more_horiz,
+                                    icon,
                                     size: 10.r,
                                     color: ColorManager.black,
                                   ))

@@ -4,9 +4,10 @@ import 'package:workfow_management_system/resources/style_manager.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
 class VacationsTable extends StatelessWidget {
-  const VacationsTable({super.key, required this.width, required this.height});
+  const VacationsTable({super.key, required this.width, required this.height,  this.showButtons = false});
 final double width;
   final double height;
+  final bool showButtons;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,27 +86,38 @@ final double width;
                           Text("3 days", style: commonTextStyle),
                           Text("11-3-2024", style: commonTextStyle),
                           Text("marwa anany", style: commonTextStyle),
-                          InkWell(
-                            child: CircleAvatar(
-                              backgroundColor: ColorManager.green,
-                              radius: 7.r,
-                              child: Center(
-                                  child: Icon(Icons.add,
-                                      color: ColorManager.white, size: 10.r)),
-                            ),
-                          ),
-                          InkWell(
-                            child: CircleAvatar(
-                              backgroundColor: ColorManager.red,
-                              radius: 7.r,
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: 15.h),
-                                child: Center(
-                                    child: Icon(Icons.minimize,
-                                        color: ColorManager.white, size: 10.r)),
+
+                          (showButtons == true)? Row(
+                            children: [
+                              InkWell(
+                                child: CircleAvatar(
+                                  backgroundColor: ColorManager.green,
+                                  radius: 7.r,
+                                  child: Center(
+                                      child: Icon(Icons.add,
+                                          color: ColorManager.white, size: 10.r)),
+                                ),
                               ),
-                            ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              InkWell(
+                                child: CircleAvatar(
+                                  backgroundColor: ColorManager.red,
+                                  radius: 7.r,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(bottom: 15.h),
+                                    child: Center(
+                                        child: Icon(Icons.minimize,
+                                            color: ColorManager.white, size: 10.r)),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ):SizedBox(
+                            width: 20.w,
                           )
+
                         ],
                       ),
                     );

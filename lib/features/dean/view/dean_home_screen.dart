@@ -16,11 +16,11 @@ class DeanHomeScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: appBarWidget(symbol: "D", title: "Ahmed Salama" ,subTitle: "Dean"),
-        body: const TabBarView(
+        body:  TabBarView(
             children: [
           DeanDashboard(),
-          DeanTasks(),
-          DeanVacations(),
+              const DeanTasks(),
+              const  DeanVacations(),
         ]),
       ),
     );

@@ -8,11 +8,12 @@ class TasksTable extends StatelessWidget {
       {super.key,
       required this.height,
       required this.width,
-      required this.showButton});
+      required this.showButton,
+      this.isMore = false});
   final double height;
   final double width;
   final bool showButton;
-
+  final bool isMore;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,29 +41,28 @@ class TasksTable extends StatelessWidget {
                 ),
                 Text(
                   "Tasks",
-                  style: TextStyle(
-                      fontSize: 5.sp, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 5.sp, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
-                (showButton == true)?
-                InkWell(
-                  onTap: (){},
-                  child: Container(
-                    width: 25.w,
-                    height: 25.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        border: Border.all(
-                          color: ColorManager.green,
-                        )),
-                    child: Center(
-                      child: Text("add Task",
-                          style:
-                          TextStyle(color:ColorManager.green, fontSize: 4.sp)),
-                    ),
-                  ),
-                ):SizedBox(width: 10.w),
-
+                (showButton == true)
+                    ? InkWell(
+                        onTap: () {},
+                        child: Container(
+                          width: 25.w,
+                          height: 25.h,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              border: Border.all(
+                                color: ColorManager.green,
+                              )),
+                          child: Center(
+                            child: Text("add Task",
+                                style: TextStyle(
+                                    color: ColorManager.green, fontSize: 4.sp)),
+                          ),
+                        ),
+                      )
+                    : SizedBox(width: 10.w),
               ],
             ),
           ),
@@ -84,6 +84,15 @@ class TasksTable extends StatelessWidget {
                   Text("sender", style: commonTextStyle),
                   Text("deadline", style: commonTextStyle),
                   Text("time remaining", style: commonTextStyle),
+                  (isMore == true)
+                      ? Icon(
+                          Icons.more_horiz,
+                          size: 20.r,
+                          color: ColorManager.primary,
+                        )
+                      : SizedBox(
+                          width: 15.w,
+                        )
                 ],
               ),
             ),
@@ -109,7 +118,18 @@ class TasksTable extends StatelessWidget {
                                   style: commonTextStyle)),
                           Text("ahmed salama", style: commonTextStyle),
                           Text("11-3-2024", style: commonTextStyle),
-                          Text("more than month", style: commonTextStyle)
+                          Text("more than month", style: commonTextStyle),
+                          (isMore == true)
+                              ? IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.more_horiz,
+                                    size: 10.r,
+                                    color: ColorManager.black,
+                                  ))
+                              : SizedBox(
+                                  width: 10.w,
+                                )
                         ],
                       ),
                     );

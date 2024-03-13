@@ -9,12 +9,13 @@ class ActionCard extends StatelessWidget {
       required this.cardColor,
       required this.title,
       required this.mainTitle,
-      required this.textOfButton, required this.width});
+      required this.textOfButton, required this.width, this.onTap});
   final Color cardColor;
   final String title;
   final String mainTitle;
   final String textOfButton;
   final double width;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,20 +56,21 @@ class ActionCard extends StatelessWidget {
               ),
               Text(mainTitle,
                   style: commonTextStyle),
-              TextButton(
-                  child: Container(
-                    height: 25.h,
-                    width: 25.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(26.r),
-                        border: Border.all(
-                            color: ColorManager.primary, width: 0.2.w)),
-                    child: Center(
-                      child: Text(textOfButton,
-                          style: TextStyle(color: ColorManager.green , fontSize: 5.sp)),
-                    ),
+              InkWell(
+                 onTap: onTap,
+                child: Container(
+                  height: 25.h,
+                  width: 25.w,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26.r),
+                      border: Border.all(
+                          color: ColorManager.primary, width: 0.2.w)),
+                  child: Center(
+                    child: Text(textOfButton,
+                        style: TextStyle(color: ColorManager.green , fontSize: 5.sp)),
                   ),
-                  onPressed: () {}),
+                ),
+              ),
             ],
           ),
         ),

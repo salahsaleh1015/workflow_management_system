@@ -9,3 +9,8 @@ TextStyle commonTextStyle  = TextStyle(
     color: ColorManager.primary,
     fontWeight: FontWeight.w700,
     fontSize: 4.sp);
+
+  TextStyle commonHintStyle  = TextStyle(
+      color: ColorManager.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: 4.sp);

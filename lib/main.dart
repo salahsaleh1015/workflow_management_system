@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => const MaterialApp(
         title: 'workflow management system',
         debugShowCheckedModeBanner: false,
-        home: DoctorsHomeScreen(),
+        home:DeanHomeScreen(),
       ),
     );
   }

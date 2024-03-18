@@ -65,9 +65,18 @@ class TasksTable extends StatelessWidget {
                   SizedBox(
                       width: 30.w,
                       child: Text("title", style: commonTextStyle)),
-                  Text("sender", style: commonTextStyle),
-                  Text("deadline", style: commonTextStyle),
-                  Text("time remaining", style: commonTextStyle),
+                  SizedBox(
+                      width: 20.w,
+                      child: Text("sender", style: commonTextStyle)),
+                  SizedBox(
+                      width: 20.w,
+                      child: Text("deadline", style: commonTextStyle)),
+                  SizedBox(
+                    width: 20.w,
+                    child: Text(
+
+                        "receiver", style: commonTextStyle),
+                  ),
                   (isMore == true)
                       ? Icon(
                           icon,
@@ -102,7 +111,7 @@ class TasksTable extends StatelessWidget {
                                   style: commonTextStyle)),
                           Text("ahmed salama", style: commonTextStyle),
                           Text("11-3-2024", style: commonTextStyle),
-                          Text("more than month", style: commonTextStyle),
+                          Text("ahmed gaber", style: commonTextStyle),
                           (isMore == true)
                               ? IconButton(
                                   onPressed: () {},

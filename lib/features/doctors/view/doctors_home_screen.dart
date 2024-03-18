@@ -17,12 +17,12 @@ class DoctorsHomeScreen extends StatelessWidget {
          length: 3,
 
          child:  Scaffold(
-           appBar: appBarWidget(symbol: "D", title: "Ahmed Gaber" ,subTitle: "doctor"),
-           body: const TabBarView(
+           appBar: appBarWidget(symbol: "D", title: "Doctors" ,subTitle: "Assistants"),
+           body:  TabBarView(
              children: [
                DoctorsDashboard(),
-               DoctorsTasks(),
-               DoctorsVacations(),
+              const DoctorsTasks(),
+              const DoctorsVacations(),
              ],
            ),
          ));

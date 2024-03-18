@@ -39,10 +39,12 @@ class InfoCard extends StatelessWidget {
                   children: [
                     Text("Welcome back ",
                         style: TextStyle(
+
                             fontWeight: FontWeight.bold,
                             fontSize: 5.sp,
                             color: ColorManager.primary)),
                     Text(name,
+                        maxLines: 2,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 5.sp,

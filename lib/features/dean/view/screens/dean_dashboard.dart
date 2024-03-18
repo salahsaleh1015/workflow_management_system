@@ -19,6 +19,7 @@ class DeanDashboard extends StatelessWidget {
   final _senderNameController = TextEditingController();
   final _taskNameController = TextEditingController();
   final _deadlineController = TextEditingController();
+  final _receiverController = TextEditingController();
   final  _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,18 @@ class DeanDashboard extends StatelessWidget {
               height: 15.h,
             ),
             ControlBar(
+
+              receiverOnSaved: (String? value){
+                _receiverController.text = value!;
+              },
+              receiverValidator: (value){
+                if (value!.isEmpty) {
+                  return 'input must not be empty';
+                }
+                return null;
+              },
+              receiverController: _receiverController,
+              receiverHint: "To Dr:#### ####",
               userName: "Ahmed",
               onChanged: (value){
                 _taskNameController.text = value;
@@ -53,7 +66,7 @@ class DeanDashboard extends StatelessWidget {
                   if ( value!.isEmpty) {
                     return 'input must not be empty';
                   }
-
+return null;
                 },
                 buttonOnTap: () {
                   _formKey.currentState!.save();

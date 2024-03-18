@@ -50,16 +50,20 @@ final double width;
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                 children: [
                   SizedBox(
-                      width: 20.w, child: Text("type", style: commonTextStyle)),
-                  Text("duration", style: commonTextStyle),
-                  Text("start date", style: commonTextStyle),
-                  Text("sender", style: commonTextStyle),
+                      width: 30.w, child: Text("type", style: commonTextStyle)),
                   SizedBox(
-                    width: 25.w,
-                  )
+                      width: 30.w,
+                      child: Text("duration", style: commonTextStyle)),
+                  SizedBox(
+                      width: 30.w,
+                      child: Text("start date", style: commonTextStyle)),
+                  SizedBox(
+                      width: 30.w,
+                      child: Text("sender", style: commonTextStyle)),
+
                 ],
               ),
             ),
@@ -74,48 +78,33 @@ final double width;
                       padding:
                           EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: [
                           SizedBox(
-                              width: 20.w,
+                              width: 30.w,
                               child: Text(
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   "ordinary",
                                   style: commonTextStyle)),
-                          Text("3 days", style: commonTextStyle),
-                          Text("11-3-2024", style: commonTextStyle),
-                          Text("marwa anany", style: commonTextStyle),
+                          SizedBox(
+                              width: 30.w,
+                              child: Text("3 days", style: commonTextStyle)),
+                          SizedBox(
+                              width: 30.w,
+                              child: Text("Mon, Mar 18, 2024", style: commonTextStyle)),
+                          SizedBox(
+                              width: 30.w,
+                              child: Text("marwa anany", style: commonTextStyle)),
 
                           (showButtons == true)? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                child: CircleAvatar(
-                                  backgroundColor: ColorManager.green,
-                                  radius: 7.r,
-                                  child: Center(
-                                      child: Icon(Icons.add,
-                                          color: ColorManager.white, size: 10.r)),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20.w,
-                              ),
-                              InkWell(
-                                child: CircleAvatar(
-                                  backgroundColor: ColorManager.red,
-                                  radius: 7.r,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 15.h),
-                                    child: Center(
-                                        child: Icon(Icons.minimize,
-                                            color: ColorManager.white, size: 10.r)),
-                                  ),
-                                ),
-                              )
+                             SizedBox(width: 120.w,),
+                             IconButton(onPressed: (){}, icon: Icon(Icons.delete_forever,color: ColorManager.red,))
                             ],
                           ):SizedBox(
-                            width: 20.w,
+                            width: 10.w,
                           )
 
                         ],

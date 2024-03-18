@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workfow_management_system/features/dean/view/dean_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:workfow_management_system/features/doctors/view/doctors_home_screen.dart';
-import 'package:workfow_management_system/features/login/view/login_view.dart';
 import 'package:workfow_management_system/features/vice/view/vice_home_screen.dart';
 import 'firebase_options.dart';
 
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => const MaterialApp(
         title: 'workflow management system',
         debugShowCheckedModeBanner: false,
-        home: LoginView(),
+        home: DoctorsHomeScreen(),
       ),
     );
   }

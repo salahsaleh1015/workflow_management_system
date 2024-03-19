@@ -7,14 +7,16 @@ class LoginFormField extends StatelessWidget {
       {super.key,
       required this.hint,
       required this.prefixIcon,
+        required this.onSaved,
       required this.controller});
   final String hint;
   final IconData prefixIcon;
   final TextEditingController controller;
-
+  final Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       controller: controller,
       decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(

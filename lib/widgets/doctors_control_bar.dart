@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:workfow_management_system/core/view_model/dashboard_cubit.dart';
+import 'package:workfow_management_system/core/view_model/dashboard_state.dart';
 import 'package:workfow_management_system/resources/style_manager.dart';
 import 'package:workfow_management_system/widgets/action_card.dart';
 import 'package:workfow_management_system/widgets/custom_dialog_button.dart';
@@ -8,73 +12,55 @@ import 'package:workfow_management_system/widgets/info_card.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
 class DoctorsControlBar extends StatefulWidget {
-  const DoctorsControlBar(
-      {super.key,
-      required this.vacationHint,
-      required this.vacationSenderController,
-      required this.vacationSenderValidator,
-      required this.vacationNumOfDaysHint,
-      required this.vacationDaysController,
-      required this.vacationDaysValidator,
-      required this.vacationStartDateHint,
-      required this.vacationStartDateController,
-      required this.vacationStartDateValidator,
-      this.textFieldOnTap,
-      this.buttonOnTap});
-
-  final String vacationHint;
-  final String vacationNumOfDaysHint;
-  final String vacationStartDateHint;
-  final TextEditingController vacationSenderController;
-  final TextEditingController vacationDaysController;
-  final TextEditingController vacationStartDateController;
-  final FormFieldValidator<String> vacationSenderValidator;
-  final FormFieldValidator<String> vacationDaysValidator;
-  final FormFieldValidator<String> vacationStartDateValidator;
-
-  final Function()? textFieldOnTap;
-  final Function()? buttonOnTap;
+  DoctorsControlBar({
+    super.key,
+  });
 
   @override
   State<DoctorsControlBar> createState() => _DoctorsControlBarState();
 }
 
 class _DoctorsControlBarState extends State<DoctorsControlBar> {
-  String? selectedValue = 'ordinary';
-
-  List<String> items = ['ordinary', 'sick leave', 'Maternity leave'];
-
+  final _vacationSenderController = TextEditingController();
+  final _vacationDaysController = TextEditingController();
+  final _vacationStartDateController = TextEditingController();
+  final _vacationTypeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 170.h,
-      width: double.infinity,
-      color: ColorManager.lightGrey,
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: 3.h, right: 10.w, left: 10.w, top: 15.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const InfoCard(
-              name: "Doctors/Assistants",
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            ActionCard(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => StatefulBuilder(
-                      builder: (context , setState)=>
-                       AlertDialog(
-                            actions: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10.w, vertical: 20.h),
+    var cubit = BlocProvider.of<DashboardCubit>(context);
+    return BlocBuilder<DashboardCubit, DashboardStates>(
+      builder: (context, state) {
+        return Container(
+          height: 170.h,
+          width: double.infinity,
+          color: ColorManager.lightGrey,
+          child: Padding(
+            padding: EdgeInsets.only(
+                bottom: 3.h, right: 10.w, left: 10.w, top: 15.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const InfoCard(
+                  name: "Doctors/Assistants",
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                ActionCard(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          actions: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 20.h),
+                              child: Form(
+                                key: _formKey,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "vacations",
@@ -84,68 +70,118 @@ class _DoctorsControlBarState extends State<DoctorsControlBar> {
                                       height: 7.h,
                                     ),
                                     CustomTextFormField(
-                                      validator: widget.vacationSenderValidator,
-                                      controller: widget.vacationSenderController,
-                                      hint: widget.vacationHint,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Add sender name";
+                                        }
+                                        return null;
+                                      },
+                                      controller:
+                                      _vacationSenderController,
+                                      hint: "ahmed mohamed",
                                     ),
                                     SizedBox(
                                       height: 20.h,
                                     ),
                                     CustomTextFormField(
                                       keyboardType: TextInputType.number,
-                                      validator: widget.vacationDaysValidator,
-                                      controller: widget.vacationDaysController,
-                                      hint: widget.vacationNumOfDaysHint,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Add duration";
+                                        }
+                                        return null;
+                                      },
+                                      controller: _vacationDaysController,
+                                      hint: '33',
                                     ),
                                     SizedBox(
                                       height: 20.h,
                                     ),
                                     CustomTextFormField(
-                                      onTap: widget.textFieldOnTap,
-                                      validator:
-                                          widget.vacationStartDateValidator,
+                                      onTap: () {
+                                        showDatePicker(
+                                          context: context,
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime.parse(
+                                              '2025-12-30'),
+                                          initialDate: DateTime.now(),
+                                        ).then((value) {
+                                          _vacationStartDateController
+                                              .text =
+                                              DateFormat.yMMMEd()
+                                                  .format(value!)
+                                                  .toString();
+                                        });
+                                      },
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Add start date";
+                                        }
+                                        return null;
+                                      },
                                       controller:
-                                          widget.vacationStartDateController,
-                                      hint: widget.vacationStartDateHint,
+                                      _vacationStartDateController,
+                                      hint: "12, Mar 18, 2024",
                                     ),
                                     SizedBox(
                                       height: 20.h,
                                     ),
-                                    DropdownButton<String>(
-                                      isExpanded: true,
-                                      value: selectedValue,
-                                      icon:
-                                          Icon(Icons.arrow_downward, size: 20.r),
-                                      items: items
-                                          .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(item,
-                                                  style: commonTextStyle)))
-                                          .toList(),
-                                      onChanged: (item) =>
-                                          setState(() => selectedValue = item),
+                                    CustomTextFormField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "add vacation type";
+                                        }
+                                        return null;
+                                      },
+                                      controller: _vacationTypeController,
+                                      hint: "ordinary",
                                     ),
                                     SizedBox(
                                       height: 20.h,
                                     ),
                                     CustomDialogButton(
-                                        buttonOnTap: widget.buttonOnTap),
+                                      buttonOnTap: () {
+                                        _formKey.currentState!.save();
+                                        if (_formKey.currentState!
+                                            .validate()) {
+                                          cubit.addVacationToFireStore(
+                                              _vacationStartDateController
+                                                  .text,
+                                              _vacationSenderController
+                                                  .text,
+                                              _vacationTypeController
+                                                  .text,
+                                              _vacationDaysController
+                                                  .text);
+                                          Navigator.pop(context);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  'vacation added successfully'))
+                                          );
+                                        }
+
+                                      },
+                                    ),
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
-                    ));
-              },
-              width: 200.w,
-              cardColor: ColorManager.yellow,
-              title: "vacation",
-              mainTitle: "Add vacation",
-              textOfButton: "Add",
+                              ),
+                            )
+                          ],
+                        )
+                            );
+                  },
+                  width: 200.w,
+                  cardColor: ColorManager.yellow,
+                  title: "vacation",
+                  mainTitle: "Add vacation",
+                  textOfButton: "Add",
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

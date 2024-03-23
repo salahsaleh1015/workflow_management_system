@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:workfow_management_system/core/view_model/dashboard_cubit.dart';
+import 'package:workfow_management_system/features/dean/view/dean_home_screen.dart';
 import 'package:workfow_management_system/features/doctors/view/doctors_home_screen.dart';
 import 'package:workfow_management_system/features/login/view/login_view.dart';
 import 'package:workfow_management_system/features/login/view_model/auth_cubit.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(create: (context) => AuthCubit()),
+        BlocProvider<DashboardCubit>(create: (context) => DashboardCubit()..getTasks()..getVacations()),
+
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -38,7 +42,8 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.loginRoute,
           title: 'workflow management system',
           debugShowCheckedModeBanner: false,
-          home: LoginView(),
+          home: DeanHomeScreen(),
+
         ),
       ),
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workfow_management_system/features/subscreens/delete_task.dart';
-import 'package:workfow_management_system/features/subscreens/edit_tasks_screen.dart';
-import 'package:workfow_management_system/features/subscreens/edit_vacations_screen.dart';
+import 'package:intl/intl.dart';
+import 'package:workfow_management_system/core/view_model/dashboard_cubit.dart';
+import 'package:workfow_management_system/core/view_model/dashboard_state.dart';
+import 'package:workfow_management_system/resources/routes_manager.dart';
 import 'package:workfow_management_system/resources/style_manager.dart';
 import 'package:workfow_management_system/widgets/action_card.dart';
 import 'package:workfow_management_system/widgets/custom_dialog_button.dart';
@@ -13,51 +15,19 @@ import 'package:workfow_management_system/resources/color_manager.dart';
 
 
 class ControlBar extends StatelessWidget {
-  final TextEditingController taskController;
-  final TextEditingController senderController;
-  final TextEditingController deadlineController;
-  final TextEditingController receiverController;
-  final String taskHint;
-  final String senderHint;
-  final String deadlineHint;
-  final String receiverHint;
-  final Function(String?)? taskOnSaved;
-  final Function(String?)? senderOnSaved;
-  final Function(String?)? deadlineOnSaved;
-  final Function(String?)? receiverOnSaved;
-  final Function()? onTap;
-  final Function()? buttonOnTap;
-  final FormFieldValidator<String> taskValidator;
-  final FormFieldValidator<String> deadlineValidator;
-  final FormFieldValidator<String> senderValidator;
-  final FormFieldValidator<String> receiverValidator;
-  final Function(String)? onChanged;
-  final String userName;
-  const ControlBar(
-      {super.key,
-      required this.taskController,
-      required this.senderController,
-      required this.deadlineController,
-      required this.taskHint,
-      required this.senderHint,
-      required this.deadlineHint,
-      this.taskOnSaved,
-      this.senderOnSaved,
-      this.deadlineOnSaved,
-      this.onTap,
-      this.buttonOnTap,
-      required this.taskValidator,
-      required this.deadlineValidator,
-      required this.senderValidator,
-      this.onChanged,
-      required this.userName,
-      required this.receiverController,
-      required this.receiverHint,
-      this.receiverOnSaved,
-      required this.receiverValidator});
-
+   
+   ControlBar({super.key, required this.userName});
+   final String userName;
+   final _formKey = GlobalKey<FormState>();
+   final _senderNameController = TextEditingController();
+   final _taskNameController = TextEditingController();
+   final _deadlineController = TextEditingController();
+   final _receiverController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var cubit = DashboardCubit.get(context);
+    return BlocBuilder<DashboardCubit, DashboardStates>(
+  builder: (context, state) {
     return Container(
       height: 170.h,
       width: double.infinity,
@@ -83,65 +53,112 @@ class ControlBar extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10.w, vertical: 20.h),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Tasks",
-                                        style: commonTextStyle,
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 7.h,
-                                  ),
-                                  CustomTextFormField(
-                                    onChanged: onChanged,
-                                    validator: taskValidator,
-                                    controller: taskController,
-                                    hint: taskHint,
-                                    onSaved: taskOnSaved,
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  CustomTextFormField(
-                                    validator: senderValidator,
-                                    hint: senderHint,
-                                    controller: senderController,
-                                    onSaved: senderOnSaved,
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  CustomTextFormField(
-                                    validator: deadlineValidator,
-                                    hint: deadlineHint,
-                                    controller: deadlineController,
-                                    onSaved: deadlineOnSaved,
-                                    onTap: onTap,
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  CustomTextFormField(
-                                    validator: receiverValidator,
-                                    hint: receiverHint,
-                                    controller: receiverController,
-                                    onSaved: receiverOnSaved,
-                                    onTap: onTap,
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  CustomDialogButton(
-                                    buttonOnTap:buttonOnTap,
-                                  ),
-                                ],
+                              child: Form(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Tasks",
+                                          style: commonTextStyle,
+                                        ),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 7.h,
+                                    ),
+                                    CustomTextFormField(
+
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'input must not be empty';
+                                        }
+                                        // You can add more validation rules here if needed
+                                        return null;
+                                      },
+                                      controller: _taskNameController,
+                                      hint: "enter task here",
+
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    CustomTextFormField(
+
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'input must not be empty';
+                                        }
+                                        // You can add more validation rules here if needed
+                                        return null;
+                                      },
+                                      hint: "sender name",
+                                      controller: _senderNameController,
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    CustomTextFormField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'input must not be empty';
+                                        }
+                                        // You can add more validation rules here if needed
+                                        return null;
+                                      },
+                                      hint: "Mon, 10 Mar, 2022",
+                                      controller: _deadlineController,
+                                      onTap:  () {
+                                        showDatePicker(
+                                          context: context,
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime.parse('2025-12-30'),
+                                          initialDate: DateTime.now(),
+                                        ).then((value) {
+                                          _deadlineController.text =
+                                              DateFormat.yMMMEd().format(value!).toString();
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    CustomTextFormField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'input must not be empty';
+                                        }
+                                        // You can add more validation rules here if needed
+                                        return null;
+                                      },
+                                      hint: "receiver name",
+                                      controller: _receiverController,
+
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    CustomDialogButton(
+                                      buttonOnTap: () {
+                                        _formKey.currentState!.save();
+                                        if (_formKey.currentState!.validate()) {
+                                          cubit.addTaskToFireStore(
+                                              _taskNameController.text,
+                                              _senderNameController.text,
+                                              _receiverController.text,
+                                              _deadlineController.text);
+                                          Navigator.pop(context);
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('task added successfully')));
+                                        }
+
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -155,10 +172,7 @@ class ControlBar extends StatelessWidget {
             ),
             ActionCard(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EditVacationsScreen()));
+                Navigator.pushNamed(context, Routes.manageVacationRoute);
               },
               width: 50.w,
               cardColor: ColorManager.blue,
@@ -168,10 +182,7 @@ class ControlBar extends StatelessWidget {
             ),
             ActionCard(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EditTasksScreen()));
+                Navigator.pushNamed(context, Routes.editTasksRoute);
               },
               width: 50.w,
               cardColor: ColorManager.red,
@@ -181,10 +192,7 @@ class ControlBar extends StatelessWidget {
             ),
             ActionCard(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DeleteTasksScreen()));
+                Navigator.pushNamed(context, Routes.deleteTasksRoute);
               },
               width: 50.w,
               cardColor: ColorManager.yellow,
@@ -196,5 +204,7 @@ class ControlBar extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

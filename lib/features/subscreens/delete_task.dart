@@ -11,8 +11,8 @@ class DeleteTasksScreen extends StatelessWidget {
          child:  TasksTable(
            width: MediaQuery.of(context).size.width*0.8,
            height: MediaQuery.of(context).size.height*0.8,
-
            isMore: true,
+           isDelete: true,
            icon: Icons.delete_forever,
          ),
        ),

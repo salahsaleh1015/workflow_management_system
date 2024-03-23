@@ -49,17 +49,31 @@ class LoginViewBody extends StatelessWidget {
                           height: 50.h,
                         ),
                         LoginFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            // You can add more validation rules here if needed
+                            return null;
+                          },
                           onSaved: (value) {
                             //AuthCubit.get(context).password = value!;
                           },
                           controller: emailController,
                           prefixIcon: Icons.mail,
-                          hint: "User Name",
+                          hint: "email",
                         ),
                         SizedBox(
                           height: 25.h,
                         ),
                         LoginFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            // You can add more validation rules here if needed
+                            return null;
+                          },
                           onSaved: (value) {
                             //AuthCubit.get(context).password = value!;
                           },

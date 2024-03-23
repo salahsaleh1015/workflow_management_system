@@ -8,14 +8,16 @@ class LoginFormField extends StatelessWidget {
       required this.hint,
       required this.prefixIcon,
         required this.onSaved,
-      required this.controller});
+      required this.controller, this.validator});
   final String hint;
   final IconData prefixIcon;
   final TextEditingController controller;
   final Function(String?)? onSaved;
+ final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       onSaved: onSaved,
       controller: controller,
       decoration: InputDecoration(

@@ -20,7 +20,9 @@ class VacationsTable extends StatelessWidget {
     var cubit = DashboardCubit.get(context);
     return BlocBuilder<DashboardCubit, DashboardStates>(
       builder: (context, state) {
-        if (state is DashboardSuccessState|| state is AddTaskSuccessState || state is AddVacationSuccessState) {
+        if (state is DashboardSuccessState ||
+            state is AddTaskSuccessState ||
+            state is AddVacationSuccessState) {
           return Container(
             width: width,
             height: height,
@@ -109,20 +111,56 @@ class VacationsTable extends StatelessWidget {
                                             .vacationModel[i].vacationStartDate,
                                         style: commonTextStyle)),
                                 SizedBox(
-                                    width: 30.w,
+                                    width: 20.w,
                                     child: Text(
                                         cubit.vacationModel[i].vacationSender,
                                         style: commonTextStyle)),
+
+                                SizedBox(
+                                    width: 25.w,
+                                    child: Text("(${cubit.vacationModel[i].vacationStatus})", style: commonHintStyle)),
                                 (showButtons == true)
                                     ? Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+
                                           SizedBox(
-                                            width: 120.w,
+                                            width: 20.w,
                                           ),
                                           IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                cubit.updateVacationStatusById(
+                                                  cubit.vacationModel[i].vacationId!,
+                                                  "accepted",
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.add,
+                                                color: ColorManager.green,
+                                              )),
+                                          IconButton(
+                                              onPressed: () {
+
+                                                cubit.updateVacationStatusById(
+                                                  cubit.vacationModel[i].vacationId!,
+                                                  "rejected",
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.delete_sweep_rounded,
+                                                color: ColorManager.red,
+                                              )),
+                                          SizedBox(
+                                            width: 40.w,
+                                          ),
+                                          IconButton(
+                                              onPressed: () {
+                                                cubit.deleteVacationById(
+                                                  cubit.vacationModel[i]
+                                                      .vacationId!,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete_forever,
                                                 color: ColorManager.red,

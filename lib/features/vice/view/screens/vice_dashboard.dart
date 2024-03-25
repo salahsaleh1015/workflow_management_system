@@ -10,6 +10,7 @@ import 'package:workfow_management_system/widgets/control_bar.dart';
 import 'package:workfow_management_system/widgets/info_card.dart';
 import 'package:workfow_management_system/widgets/tasks_table.dart';
 import 'package:workfow_management_system/widgets/vacations_table.dart';
+import 'package:workfow_management_system/widgets/vice_control_bar.dart';
 
 class ViceDashboard extends StatelessWidget {
  const  ViceDashboard({super.key});
@@ -29,7 +30,7 @@ class ViceDashboard extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                ControlBar(
+                const ViceControlBar(
                   userName: "Maher",
                 ),
                 SizedBox(
@@ -39,13 +40,13 @@ class ViceDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TasksTable(
-                      width: 200.w,
+                      width: 170.w,
                       height: 300.h,
 
                     ),
                     VacationsTable(
                       showButtons: false,
-                      width: 150.w,
+                      width: 170.w,
                       height: 300.h,
                     )
                   ],

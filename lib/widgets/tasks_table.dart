@@ -87,37 +87,17 @@ class TasksTable extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            width: 30.w,
-                            child: Row(
-                              children: [
-                                Text("title", style: commonTextStyle),
-                                Spacer(),
-                              ],
-                            )),
+                            width:20.w,
+                            child: Text("title", style: commonTextStyle)),
                         SizedBox(
                             width: 20.w,
-                            child: Row(
-                              children: [
-                                Text("sender", style: commonTextStyle),
-                                Spacer(),
-                              ],
-                            )),
+                            child: Text("sender", style: commonTextStyle)),
                         SizedBox(
                             width: 20.w,
-                            child: Row(
-                              children: [
-                                Text("deadline", style: commonTextStyle),
-                                Spacer(),
-                              ],
-                            )),
+                            child: Text("deadline", style: commonTextStyle)),
                         SizedBox(
                           width: 20.w,
-                          child: Row(
-                            children: [
-                              Text("receiver", style: commonTextStyle),
-                              Spacer(),
-                            ],
-                          ),
+                          child: Text("receiver", style: commonTextStyle),
                         ),
                         (isMore == true)
                             ? Icon(
@@ -167,24 +147,27 @@ class TasksTable extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                      width: 45.w,
+                                      width: 20.w,
                                       child: Text(
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           cubit.taskModel[i].taskTitle,
                                           style: commonTextStyle)),
                                   SizedBox(
-                                    width: 30.w,
+                                    width: 20.w,
                                     child: Text(cubit.taskModel[i].taskSender,
                                         style: commonTextStyle),
                                   ),
                                   SizedBox(
-                                    width: 30.w,
-                                    child: Text(cubit.taskModel[i].taskDeadline,
-                                        style: commonTextStyle),
+                                    width: 20.w,
+                                    child: SizedBox(
+                                      child: Text(cubit.taskModel[i].taskDeadline,
+                                          style: commonTextStyle),
+
+                                    ),
                                   ),
                                   SizedBox(
-                                    width: 30.w,
+                                    width: 20.w,
                                     child: Text(cubit.taskModel[i].taskReceiver,
                                         style: commonTextStyle),
                                   ),
@@ -236,6 +219,9 @@ class TasksTable extends StatelessWidget {
                                                                               7.h,
                                                                         ),
                                                                         CustomTextFormField(
+                                                                          maxLines: 5,
+                                                                          minLines: 2,
+                                                                          height: 70.h,
                                                                           validator:
                                                                               (value) {
                                                                             if (value!

@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,52 +15,50 @@ import 'package:workfow_management_system/widgets/info_card.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
 
-class ControlBar extends StatefulWidget {
-   
-   ControlBar({super.key, required this.userName});
-   final String userName;
+class ViceControlBar extends StatefulWidget {
+  const ViceControlBar({super.key, required this.userName});
+  final String userName;
 
   @override
-  State<ControlBar> createState() => _ControlBarState();
+  State<ViceControlBar> createState() => _ViceControlBarState();
 }
 
-class _ControlBarState extends State<ControlBar> {
-   final _formKey = GlobalKey<FormState>();
+class _ViceControlBarState extends State<ViceControlBar> {
+  final _formKey = GlobalKey<FormState>();
 
-   final _senderNameController = TextEditingController();
+  final _senderNameController = TextEditingController();
 
-   final _taskNameController = TextEditingController();
+  final _taskNameController = TextEditingController();
 
-   final _deadlineController = TextEditingController();
+  final _deadlineController = TextEditingController();
 
-   final _receiverController = TextEditingController();
-
+  final _receiverController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var cubit = DashboardCubit.get(context);
     return BlocBuilder<DashboardCubit, DashboardStates>(
-  builder: (context, state) {
-    return Container(
-      height: 170.h,
-      width: double.infinity,
-      color: ColorManager.lightGrey,
-      child: Padding(
-        padding:
+      builder: (context, state) {
+        return Container(
+          height: 170.h,
+          width: double.infinity,
+          color: ColorManager.lightGrey,
+          child: Padding(
+            padding:
             EdgeInsets.only(bottom: 3.h, right: 10.w, left: 10.w, top: 15.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InfoCard(
-              name: widget.userName,
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            ActionCard(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InfoCard(
+                  name: widget.userName,
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                ActionCard(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
                           actions: [
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -176,48 +175,38 @@ class _ControlBarState extends State<ControlBar> {
                             )
                           ],
                         ));
-              },
-              width: 50.w,
-              cardColor: ColorManager.red,
-              title: "Task",
-              mainTitle: "Add New Task",
-              textOfButton: "Add",
+                  },
+                  width: 50.w,
+                  cardColor: ColorManager.red,
+                  title: "Task",
+                  mainTitle: "Add New Task",
+                  textOfButton: "Add",
+                ),
+                ActionCard(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.editTasksRoute);
+                  },
+                  width: 50.w,
+                  cardColor: ColorManager.red,
+                  title: "Task",
+                  mainTitle: "Edit Task",
+                  textOfButton: "Edit",
+                ),
+                ActionCard(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.deleteTasksRoute);
+                  },
+                  width: 50.w,
+                  cardColor: ColorManager.yellow,
+                  title: "Task",
+                  mainTitle: "delete Task",
+                  textOfButton: "delete",
+                ),
+              ],
             ),
-            ActionCard(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.manageVacationRoute);
-              },
-              width: 50.w,
-              cardColor: ColorManager.blue,
-              title: "vacations",
-              mainTitle: "Manage Vacations",
-              textOfButton: "Now",
-            ),
-            ActionCard(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.editTasksRoute);
-              },
-              width: 50.w,
-              cardColor: ColorManager.red,
-              title: "Task",
-              mainTitle: "Edit Task",
-              textOfButton: "Edit",
-            ),
-            ActionCard(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.deleteTasksRoute);
-              },
-              width: 50.w,
-              cardColor: ColorManager.yellow,
-              title: "Task",
-              mainTitle: "delete Task",
-              textOfButton: "delete",
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
-  },
-);
   }
 }

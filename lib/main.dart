@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.loginRoute,
           title: 'workflow management system',
           debugShowCheckedModeBanner: false,
-          home: DeanHomeScreen(),
+          home: LoginView(),
 
         ),
       ),

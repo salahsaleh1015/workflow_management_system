@@ -31,11 +31,11 @@ class DoctorsDashboard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TasksTable(
-                width: 200.w,
+                width: 170.w,
                 height: 300.h,
               ),
               VacationsTable(
-                width: 150.w,
+                width: 170.w,
                 height: 300.h,
               )
             ],

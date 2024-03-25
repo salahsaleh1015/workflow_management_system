@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workfow_management_system/core/models/task_model.dart';
 import 'package:workfow_management_system/core/models/vacation_model.dart';
@@ -61,6 +62,7 @@ class DashboardCubit extends Cubit<DashboardStates> {
       taskReceiver: taskReceiver,
       taskSender: taskSender,
       taskTitle: taskName,
+      createdAt: Timestamp.now(),
     );
     DashboardServices().addTaskToFireStore(taskModel).then((value) {
       getTasks();
@@ -80,10 +82,12 @@ class DashboardCubit extends Cubit<DashboardStates> {
   ) async {
     emit(AddVacationLoadingState());
     final vacationModel = VacationModel(
+      createdAt: Timestamp.now(),
       vacationStartDate: vacationStartDate,
       vacationSender: vacationSender,
       vacationType: vacationType,
       vacationDuration: vacationDuration,
+      vacationStatus: "pending",
     );
     DashboardServices().addVacationToFireStore(vacationModel).then((value) {
       getVacations();
@@ -123,5 +127,35 @@ class DashboardCubit extends Cubit<DashboardStates> {
       print(error);
       emit(UpdateTaskErrorState(error.toString()));
     });
+  }
+
+
+
+  Future<void> deleteVacationById(String documentId) async {
+    emit(DeleteVacationLoadingState());
+    DashboardServices().deleteVacationById(documentId).then((value) {
+      getVacations();
+      print("deleted successfully");
+      emit(DeleteVacationSuccessState());
+    }).catchError((error) {
+      print(error);
+      emit(DeleteVacationErrorState(error.toString()));
+    });
+  }
+
+  Future<void> updateVacationStatusById(String documentId , String value)async{
+    emit(UpdateVacationLoadingState());
+    DashboardServices().updateVacationStatusById(
+      documentId:documentId,
+      value: value,
+    ).then((value) {
+      getVacations();
+      print("updated successfully");
+      emit(UpdateVacationSuccessState());
+    }).catchError((error) {
+      print(error);
+      emit(UpdateVacationErrorState(error.toString()));
+    });
+
   }
 }

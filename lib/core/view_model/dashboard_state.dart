@@ -52,3 +52,22 @@ class AddVacationErrorState extends DashboardStates {
   AddVacationErrorState(this.error);
 
 }
+
+class DeleteVacationLoadingState extends DashboardStates {}
+class DeleteVacationSuccessState extends DashboardStates {}
+
+class DeleteVacationErrorState extends DashboardStates {
+  final String error;
+
+  DeleteVacationErrorState(this.error);
+
+}
+
+class UpdateVacationLoadingState extends DashboardStates {}
+class UpdateVacationSuccessState extends DashboardStates {}
+
+class UpdateVacationErrorState extends DashboardStates {
+  final String error;
+
+  UpdateVacationErrorState(this.error);
+}

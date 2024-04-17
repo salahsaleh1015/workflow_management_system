@@ -6,11 +6,11 @@ import 'package:workfow_management_system/resources/style_manager.dart';
 class ActionCard extends StatelessWidget {
   const ActionCard(
       {super.key,
-      required this.cardColor,
+
       required this.title,
       required this.mainTitle,
       required this.textOfButton, required this.width, this.onTap});
-  final Color cardColor;
+
   final String title;
   final String mainTitle;
   final String textOfButton;
@@ -46,12 +46,12 @@ class ActionCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.r),
                     border: Border.all(
-                      color: cardColor,
+                      color: ColorManager.primary,
                     )),
                 child: Center(
                   child: Text(title,
                       style:
-                          TextStyle(color:cardColor, fontSize: 4.sp)),
+                          TextStyle(color:ColorManager.primary, fontSize: 4.sp)),
                 ),
               ),
               Text(mainTitle,
@@ -67,7 +67,7 @@ class ActionCard extends StatelessWidget {
                           color: ColorManager.primary, width: 0.2.w)),
                   child: Center(
                     child: Text(textOfButton,
-                        style: TextStyle(color: ColorManager.green , fontSize: 5.sp)),
+                        style: TextStyle(color: ColorManager.black , fontSize: 5.sp)),
                   ),
                 ),
               ),
@@ -77,7 +77,7 @@ class ActionCard extends StatelessWidget {
         Container(
           height: 5.h,
           width: width,
-          color:cardColor,
+          color:ColorManager.primary,
         )
       ],
     );

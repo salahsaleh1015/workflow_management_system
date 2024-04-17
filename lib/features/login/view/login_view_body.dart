@@ -44,7 +44,7 @@ class LoginViewBody extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 5.sp,
                                 fontWeight: FontWeight.bold,
-                                color: ColorManager.green)),
+                                color: ColorManager.black)),
                         SizedBox(
                           height: 50.h,
                         ),
@@ -104,7 +104,7 @@ class LoginViewBody extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.5,
                 height: double.infinity,
                 child:
-                    Image.asset(AssetsManager.welcomeImage, fit: BoxFit.cover),
+                    Image.asset(AssetsManager.loginIcon2, fit: BoxFit.fill),
               )
             ],
           ),

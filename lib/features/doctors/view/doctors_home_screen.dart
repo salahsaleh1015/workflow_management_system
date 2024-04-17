@@ -5,6 +5,7 @@
 import 'package:workfow_management_system/features/doctors/view/screens/doctors_dashboard.dart';
 import 'package:workfow_management_system/features/doctors/view/screens/doctors_tasks.dart';
 import 'package:workfow_management_system/features/doctors/view/screens/doctors_vacations.dart';
+import 'package:workfow_management_system/resources/routes_manager.dart';
 
 import '../../../widgets/app_bar_widget.dart';
 
@@ -17,7 +18,9 @@ class DoctorsHomeScreen extends StatelessWidget {
          length: 3,
 
          child:  Scaffold(
-           appBar: appBarWidget(symbol: "D", title: "Doctors" ,subTitle: "Assistants"),
+           appBar: appBarWidget( onPressed: (){
+         Navigator.pushNamed(context, Routes.loginRoute);
+         },symbol: "D", title: "Doctors" ,subTitle: "Assistants"),
            body:  TabBarView(
              children: [
                DoctorsDashboard(),

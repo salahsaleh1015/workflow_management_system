@@ -31,7 +31,7 @@ class LoginFormField extends StatelessWidget {
           prefixIcon: Icon(prefixIcon, color: ColorManager.primary),
           hintText: hint,
           hintStyle: TextStyle(
-            color: ColorManager.primary,
+            color: ColorManager.black,
           )),
     );
   }

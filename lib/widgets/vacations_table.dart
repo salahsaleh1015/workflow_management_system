@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workfow_management_system/core/view_model/dashboard_cubit.dart';
-import 'package:workfow_management_system/core/view_model/dashboard_state.dart';
+import 'package:workfow_management_system/core/view_models/vacations_view_model/vacations_cubit.dart';
+import 'package:workfow_management_system/core/view_models/vacations_view_model/vacations_state.dart';
 import 'package:workfow_management_system/resources/style_manager.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
@@ -17,11 +17,10 @@ class VacationsTable extends StatelessWidget {
   final bool showButtons;
   @override
   Widget build(BuildContext context) {
-    var cubit = DashboardCubit.get(context);
-    return BlocBuilder<DashboardCubit, DashboardStates>(
+    var cubit = VacationsCubit.get(context);
+    return BlocBuilder<VacationsCubit, VacationsStates>(
       builder: (context, state) {
-        if (state is DashboardSuccessState ||
-            state is AddTaskSuccessState ||
+        if (state is GetVacationsSuccessState ||
             state is AddVacationSuccessState) {
           return Container(
             width: width,
@@ -179,9 +178,9 @@ class VacationsTable extends StatelessWidget {
               ],
             ),
           );
-        } else if (state is DashboardErrorState) {
+        } else if (state is GetVacationsErrorState) {
           return Center(
-            child: Text(state.message),
+            child: Text(state.error),
           );
         } else {
           return const Center(

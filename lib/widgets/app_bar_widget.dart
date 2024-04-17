@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
+import 'package:workfow_management_system/resources/routes_manager.dart';
 
 import '../resources/assets_maneger.dart';
 
-PreferredSize appBarWidget({required String title , required String symbol , required String subTitle}) => PreferredSize(
+PreferredSize appBarWidget({required Function() onPressed ,required String title , required String symbol , required String subTitle , }) => PreferredSize(
       preferredSize: Size.fromHeight(55.h),
       child: AppBar(
         backgroundColor: ColorManager.primary,
@@ -12,7 +13,7 @@ PreferredSize appBarWidget({required String title , required String symbol , req
           SizedBox(
             width: 20.w,
           ),
-          Image.asset(AssetsManager.loginIcon),
+          Icon(Icons.cast_for_education_outlined,color: ColorManager.white,size: 30.r,),
           SizedBox(
             width: 10.w,
           ),
@@ -28,7 +29,7 @@ PreferredSize appBarWidget({required String title , required String symbol , req
               Text("management",
                   style: TextStyle(
                     fontSize: 5.sp,
-                    color: ColorManager.green,
+                    color: ColorManager.white,
                   )),
             ],
           ),
@@ -72,7 +73,7 @@ PreferredSize appBarWidget({required String title , required String symbol , req
               child: Text(symbol,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: ColorManager.green,
+                    color: ColorManager.primary,
                   )),
             ),
           ),
@@ -89,7 +90,7 @@ PreferredSize appBarWidget({required String title , required String symbol , req
                   )),
               Text(subTitle,
                   style: TextStyle(
-                    color: ColorManager.green,
+                    color: ColorManager.white,
                     fontSize: 3.sp,
                   )),
             ],
@@ -98,10 +99,10 @@ PreferredSize appBarWidget({required String title , required String symbol , req
             width: 10.w,
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: onPressed,
               icon: Icon(
                 Icons.logout,
-                color: ColorManager.green,
+                color: ColorManager.white,
                 size: 30.r,
               ))
         ]),

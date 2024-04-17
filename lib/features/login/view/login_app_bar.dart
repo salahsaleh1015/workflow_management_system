@@ -14,7 +14,7 @@ PreferredSize loginAppBar() {
         SizedBox(
           width: 50.w,
         ),
-        Image.asset(AssetsManager.loginIcon),
+       Icon(Icons.cast_for_education_outlined,color: ColorManager.white,size: 30.r,),
         SizedBox(
           width: 10.w,
         ),
@@ -30,7 +30,7 @@ PreferredSize loginAppBar() {
             Text("management",
                 style: TextStyle(
                   fontSize: 5.sp,
-                  color: ColorManager.green,
+                  color: ColorManager.white,
                 )),
           ],
         ),

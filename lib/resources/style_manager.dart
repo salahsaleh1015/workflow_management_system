@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workfow_management_system/resources/color_manager.dart';
 
 TextStyle commonTextStyle  = TextStyle(
-    color: ColorManager.primary,
+    color: ColorManager.black,
     fontWeight: FontWeight.w700,
     fontSize: 4.sp);
 

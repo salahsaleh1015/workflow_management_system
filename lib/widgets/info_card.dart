@@ -48,7 +48,7 @@ class InfoCard extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 5.sp,
-                            color: ColorManager.green)),
+                            color: ColorManager.black)),
                   ],
                 ),
 

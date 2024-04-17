@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:workfow_management_system/core/view_model/dashboard_cubit.dart';
-import 'package:workfow_management_system/core/view_model/dashboard_state.dart';
+import 'package:workfow_management_system/core/view_models/tasks_view_model/tasks_cubit.dart';
+import 'package:workfow_management_system/core/view_models/tasks_view_model/tasks_state.dart';
 import 'package:workfow_management_system/resources/routes_manager.dart';
 import 'package:workfow_management_system/resources/style_manager.dart';
 import 'package:workfow_management_system/widgets/action_card.dart';
@@ -36,8 +36,8 @@ class _ControlBarState extends State<ControlBar> {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = DashboardCubit.get(context);
-    return BlocBuilder<DashboardCubit, DashboardStates>(
+    var cubit = TasksCubit.get(context);
+    return BlocBuilder<TasksCubit, TasksStates>(
   builder: (context, state) {
     return Container(
       height: 170.h,
@@ -45,16 +45,14 @@ class _ControlBarState extends State<ControlBar> {
       color: ColorManager.lightGrey,
       child: Padding(
         padding:
-            EdgeInsets.only(bottom: 3.h, right: 10.w, left: 10.w, top: 15.h),
+            EdgeInsets.only(bottom: 3.h, right: 10.w, left:5.w, top: 15.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InfoCard(
               name: widget.userName,
             ),
-            SizedBox(
-              width: 10.w,
-            ),
+
             ActionCard(
               onTap: () {
                 showDialog(
@@ -123,7 +121,7 @@ class _ControlBarState extends State<ControlBar> {
                                         // You can add more validation rules here if needed
                                         return null;
                                       },
-                                      hint: "Mon, 10 Mar, 2022",
+                                      hint: "deadline",
                                       controller: _deadlineController,
                                       onTap:  () {
                                         showDatePicker(
@@ -178,7 +176,7 @@ class _ControlBarState extends State<ControlBar> {
                         ));
               },
               width: 50.w,
-              cardColor: ColorManager.red,
+
               title: "Task",
               mainTitle: "Add New Task",
               textOfButton: "Add",
@@ -188,7 +186,6 @@ class _ControlBarState extends State<ControlBar> {
                 Navigator.pushNamed(context, Routes.manageVacationRoute);
               },
               width: 50.w,
-              cardColor: ColorManager.blue,
               title: "vacations",
               mainTitle: "Manage Vacations",
               textOfButton: "Now",
@@ -198,7 +195,7 @@ class _ControlBarState extends State<ControlBar> {
                 Navigator.pushNamed(context, Routes.editTasksRoute);
               },
               width: 50.w,
-              cardColor: ColorManager.red,
+
               title: "Task",
               mainTitle: "Edit Task",
               textOfButton: "Edit",
@@ -208,10 +205,19 @@ class _ControlBarState extends State<ControlBar> {
                 Navigator.pushNamed(context, Routes.deleteTasksRoute);
               },
               width: 50.w,
-              cardColor: ColorManager.yellow,
+
               title: "Task",
               mainTitle: "delete Task",
               textOfButton: "delete",
+            ),
+            ActionCard(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.responseRoute);
+              },
+              width: 50.w,
+              title: "Response",
+              mainTitle: "view responses",
+              textOfButton: "Now",
             ),
           ],
         ),
